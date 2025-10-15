@@ -33,6 +33,11 @@ Singleton {
                 }
             }
 
+            property JsonObject bar: JsonObject {
+                property string position: "top"
+                property int height: 30
+            }
+
             property JsonObject focusedWindow: JsonObject {
                 property JsonObject icon: JsonObject {
                     property bool enabled: true

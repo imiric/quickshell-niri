@@ -5,20 +5,23 @@ import qs.modules.common
 
 PanelWindow {
     id: bar
+    implicitHeight: Config.data.bar.height
+    color: "transparent"
+    property string position: Config.data.bar.position
+
     anchors {
-        top: true
+        top: position === "top"
+        bottom: position === "bottom"
         left: true
         right: true
     }
-    implicitHeight: 30
-    color: "transparent"
 
     Rectangle {
         anchors.fill: parent
         color: Config.data.theme.color.background
         bottomLeftRadius: 20
         bottomRightRadius: 20
-        // left
+
         RowLayout {
             id: leftLayout
             anchors {
@@ -27,7 +30,7 @@ PanelWindow {
             }
             Loader { active: true; sourceComponent: Workspaces {} }
         }
-        // center
+
         RowLayout {
             id: centerLayout
 
@@ -39,7 +42,7 @@ PanelWindow {
             Loader { active: true; sourceComponent: FocusedWindow {} }
 
         }
-        // right
+
         RowLayout {
             id: rightLayout
 
