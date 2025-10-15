@@ -11,7 +11,6 @@ Rectangle {
     bottomRightRadius: 10
 
     Rectangle {
-        id: workspaceLayout
         anchors {
             verticalCenter: parent.verticalCenter
             left: parent.left
