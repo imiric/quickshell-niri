@@ -20,7 +20,7 @@ PanelWindow {
         bottomRightRadius: 20
         // left
         RowLayout {
-            id: workspaceLayout
+            id: leftLayout
             anchors {
                 left: parent.left
                 leftMargin: 25
@@ -29,45 +29,20 @@ PanelWindow {
         }
         // center
         RowLayout {
-            spacing: 5
+            id: centerLayout
 
             anchors {
-                left: workspaceLayout.right
+                left: leftLayout.right
                 leftMargin: 5
                 verticalCenter: parent.verticalCenter
             }
+            Loader { active: true; sourceComponent: FocusedWindow {} }
 
-            Image {
-                Layout.alignment: Qt.AlignVCenter
-                source: niri.focusedWindow?.iconPath ? "file://" + niri.focusedWindow?.iconPath : ""
-                sourceSize.width: 24
-                sourceSize.height: 24
-                visible: Config.data.application.icon.enabled && niri.focusedWindow?.iconPath !== ""
-                smooth: true
-            }
-
-            // Fallback for missing icons
-            Rectangle {
-                Layout.alignment: Qt.AlignVCenter
-                width: 24
-                height: 24
-                color: "#CCC"
-                visible: Config.data.application.icon.enabled && niri.focusedWindow?.iconPath === ""
-                radius: 12
-            }
-
-            Text {
-                Layout.alignment: Qt.AlignVCenter
-                text: niri.focusedWindow?.title ?? ""
-                font.family: Config.data.application.font.family || Config.data.theme.font.family
-                font.pixelSize: Config.data.application.font.size_factor * Config.data.theme.font.size
-                font.weight: Config.data.application.font.weight
-                color: Config.data.theme.color.text
-                visible: Config.data.application.title.enabled
-            }
         }
         // right
         RowLayout {
+            id: rightLayout
+
             anchors {
                 verticalCenter: parent.verticalCenter
                 right: parent.right

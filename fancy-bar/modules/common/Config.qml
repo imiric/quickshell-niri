@@ -33,10 +33,10 @@ Singleton {
                 }
             }
 
-            property JsonObject application: JsonObject {
+            property JsonObject focusedWindow: JsonObject {
                 property JsonObject icon: JsonObject {
                     property bool enabled: true
-                    property real size_factor: 1.1
+                    property real size_factor: 1
                 }
                 property JsonObject title: JsonObject {
                     property bool enabled: true
