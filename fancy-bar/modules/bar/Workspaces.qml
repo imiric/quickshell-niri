@@ -1,10 +1,11 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
+import qs.modules.common
 
 Rectangle {
     anchors.left: parent.left
-    color: "#666666"
+    color: Config.data.theme.color.background2
     height: 25
     width: 215
     bottomLeftRadius: 10
@@ -30,10 +31,10 @@ Rectangle {
 
                 Rectangle {
                     visible: index < 11
-                    width: 15
-                    height: 15
-                    radius: 10
-                    color: model.isActive ? "#000000" : "#333333"
+                    width: Config.data.workspaces.icon.size_factor * Config.data.theme.widget.size
+                    height: Config.data.workspaces.icon.size_factor * Config.data.theme.widget.size
+                    radius: Config.data.workspaces.icon.size_factor * Config.data.theme.widget.size * Config.data.workspaces.icon.radius
+                    color: model.isActive ? Config.data.theme.color.active : Config.data.theme.color.inactive
                     MouseArea {
                         anchors.fill: parent
                         cursorShape: Qt.PointingHandCursor
