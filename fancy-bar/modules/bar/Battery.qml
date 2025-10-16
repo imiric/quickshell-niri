@@ -23,12 +23,16 @@ MouseArea {
         id: batteryProgress
         anchors {
             centerIn: parent
-            horizontalCenterOffset: -2  // Account for battery icon nub
+            // Account for battery icon nub
+            horizontalCenterOffset: icon.orientation === Types.Orientation.Horizontal ? -icon.nubWidth / 2 : 0
+            verticalCenterOffset: icon.orientation === Types.Orientation.Vertical ? icon.nubHeight / 2 : 0
         }
-        valueBarWidth: icon.width - icon.borderWidth * 2 - 2 // 2 for nub + margins
-        valueBarHeight: icon.height - icon.borderWidth * 2
+        valueBarWidth: icon.bodyWidth - icon.borderWidth * 2
+        valueBarHeight: icon.bodyHeight - icon.borderWidth * 2
         value: percentage
         text: Math.round(value * 100)
+        shimmer: isCharging
+        pulse: isCharging
         highlightColor: (() => {
             if (isCritical && !isCharging) {
                 return Config.data.theme.color.error;
@@ -42,7 +46,7 @@ MouseArea {
         font.pixelSize: 14
         textColor: Config.data.theme.color.foreground
 
-        // Clip the progress bar within the borders of the icon
+        // Clip the progress bar within the borders of the battery icon body
         layer.enabled: true
         layer.effect: OpacityMask {
             maskSource: Item {
@@ -50,11 +54,11 @@ MouseArea {
                 height: batteryProgress.height
 
                 Rectangle {
-                    x: icon.x - batteryProgress.x
-                    y: icon.y - batteryProgress.y
-                    width: icon.width - 3  // Exclude nub
-                    height: icon.height
-                    radius: 3
+                    x: (batteryProgress.width - icon.bodyWidth) / 2
+                    y: (batteryProgress.height - icon.bodyHeight) / 2
+                    width: icon.bodyWidth
+                    height: icon.bodyHeight
+                    radius: icon.orientation === Types.Orientation.Vertical ? icon.width * 0.2 : icon.height * 0.2
                 }
             }
         }
