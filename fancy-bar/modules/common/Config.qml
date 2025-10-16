@@ -21,8 +21,12 @@ Singleton {
                    property string inactive: "#333333"
                    property string text: "#999999"
                    property string text_muted: "#777777"
+                   property string foreground: "#999999"
                    property string background: "#222222"
                    property string background2: "#666666"
+                   property string ok: "#1A7F39"
+                   property string error: "#E5002E"
+                   property string warning: "#E5BF00"
                 }
                 property JsonObject font: JsonObject {
                     property string family: "Sans"
@@ -53,13 +57,12 @@ Singleton {
                 }
             }
 
-            property JsonObject power: JsonObject {
+            property JsonObject battery: JsonObject {
                 property bool enabled: true
-                property JsonObject font: JsonObject {
-                    property string family
-                    property real size_factor: 1.1
-                    property int weight: 400
-                }
+                property int low: 20
+                property int critical: 10
+                property int suspend: 5
+                property bool automaticSuspend: true
             }
 
             property JsonObject time: JsonObject {

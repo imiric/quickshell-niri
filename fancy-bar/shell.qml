@@ -4,6 +4,7 @@ import Quickshell
 import Quickshell.Wayland
 import Niri 0.1
 import "./modules/bar/"
+import "./services/"
 
 ShellRoot{
     id: root
