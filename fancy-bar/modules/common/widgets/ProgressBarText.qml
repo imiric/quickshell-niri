@@ -13,7 +13,7 @@ ProgressBar {
     property real valueBarWidth: 30
     property real valueBarHeight: 18
     property color highlightColor: "gray"
-    property color trackColor: Color.transparentize(highlightColor, 0.7)
+    property color trackColor: ColorUtils.transparentize(highlightColor, 0.7)
     property alias radius: contentItem.radius
     property color textColor: "white"
     property string text
