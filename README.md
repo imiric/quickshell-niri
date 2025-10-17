@@ -5,7 +5,7 @@ This project contains examples of [Quickshell](https://quickshell.outfoxxed.me/)
 
 ### Setup
 
-1. Install recent versions of Quickshell and niri. These examples were tested with Quickshell v0.2.0, and niri v25.08.
+1. Install Quickshell version >=0.2.1, and niri version >=25.08.
 
 2. [Install the QML plugin for niri.](https://github.com/imiric/qml-niri#installation)
 
