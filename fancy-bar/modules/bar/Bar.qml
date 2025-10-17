@@ -5,7 +5,7 @@ import qs.modules.common
 
 PanelWindow {
     id: bar
-    implicitHeight: Config.data.bar.height
+    implicitHeight: Config.data.bar.size
     color: "transparent"
     property string position: Config.data.bar.position
 

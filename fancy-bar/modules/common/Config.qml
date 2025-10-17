@@ -43,7 +43,7 @@ Singleton {
 
             property JsonObject bar: JsonObject {
                 property string position: "top"
-                property int height: 30
+                property int size: 30
             }
 
             property JsonObject focusedWindow: JsonObject {
