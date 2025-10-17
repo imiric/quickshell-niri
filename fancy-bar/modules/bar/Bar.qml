@@ -19,8 +19,6 @@ PanelWindow {
     Rectangle {
         anchors.fill: parent
         color: Config.data.theme.color.background
-        bottomLeftRadius: 20
-        bottomRightRadius: 20
 
         RowLayout {
             id: leftLayout
