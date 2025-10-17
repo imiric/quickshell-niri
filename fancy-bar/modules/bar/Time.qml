@@ -16,9 +16,9 @@ Rectangle {
 
         text: Qt.formatDateTime(clock.date, Config.data.time.format)
         font.family: Config.data.time.font.family || Config.data.theme.font.family
-        font.pixelSize: Config.data.time.font.size_factor * Config.data.theme.font.size
+        font.pixelSize: Config.data.time.font.size * Config.data.theme.font.size
         font.weight: Config.data.time.font.weight
-        color: Config.data.theme.color.text_muted
+        color: Config.data.theme.color.textMuted
         visible: Config.data.time.enabled
 
         Component.onCompleted: {

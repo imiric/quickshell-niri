@@ -31,9 +31,9 @@ Rectangle {
 
                 Rectangle {
                     visible: index < 11
-                    width: Config.data.workspaces.icon.size_factor * Config.data.theme.widget.size
-                    height: Config.data.workspaces.icon.size_factor * Config.data.theme.widget.size
-                    radius: Config.data.workspaces.icon.size_factor * Config.data.theme.widget.size * Config.data.workspaces.icon.radius
+                    width: Config.data.workspaces.icon.size * Config.data.theme.widget.size
+                    height: Config.data.workspaces.icon.size * Config.data.theme.widget.size
+                    radius: Config.data.workspaces.icon.size * Config.data.theme.widget.size * Config.data.workspaces.icon.radius
                     color: model.isActive ? Config.data.theme.color.active : Config.data.theme.color.inactive
                     MouseArea {
                         anchors.fill: parent

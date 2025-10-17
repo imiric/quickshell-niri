@@ -14,13 +14,13 @@ Singleton {
         JsonAdapter {
             id: adapter
 
-            // Global theme. Source of default and base values for all widgets.
+            // Global theme. Source of default and base values for all components.
             property JsonObject theme: JsonObject {
                 property JsonObject color: JsonObject {
                    property string active: "#000000"
                    property string inactive: "#333333"
                    property string text: "#999999"
-                   property string text_muted: "#777777"
+                   property string textMuted: "#777777"
                    property string foreground: "#999999"
                    property string background: "#222222"
                    property string background2: "#666666"
@@ -30,9 +30,13 @@ Singleton {
                 }
                 property JsonObject font: JsonObject {
                     property string family: "Sans"
+                    // Size in pixels of all fonts. The actual size of fonts in
+                    // individual components will be proportial to this value.
                     property real size: 14
                 }
                 property JsonObject widget: JsonObject {
+                    // Size in pixels of all widgets. The actual size of
+                    // individual widgets will be proportial to this value.
                     property real size: 24
                 }
             }
@@ -45,14 +49,14 @@ Singleton {
             property JsonObject focusedWindow: JsonObject {
                 property JsonObject icon: JsonObject {
                     property bool enabled: true
-                    property real size_factor: 1
+                    property real size: 1
                 }
                 property JsonObject title: JsonObject {
                     property bool enabled: true
                 }
                 property JsonObject font: JsonObject {
                     property string family
-                    property real size_factor: 1.2
+                    property real size: 1.2
                     property int weight: 600
                 }
             }
@@ -70,7 +74,7 @@ Singleton {
                 property string format: "yyyy-dd-MM hh:mm:ss"
                 property JsonObject font: JsonObject {
                     property string family
-                    property real size_factor: 1.1
+                    property real size: 1.1
                     property int weight: 400
                 }
             }
@@ -78,7 +82,7 @@ Singleton {
             property JsonObject workspaces: JsonObject {
                 property bool enabled: true
                 property JsonObject icon: JsonObject {
-                    property real size_factor: 0.6
+                    property real size: 0.6
                     property real radius: 1
                 }
             }
