@@ -18,16 +18,16 @@ Singleton {
             // Global theme. Source of default and base values for all components.
             property JsonObject theme: JsonObject {
                 property JsonObject color: JsonObject {
-                   property string active: "#000000"
-                   property string inactive: "#333333"
-                   property string text: "#999999"
-                   property string textMuted: "#777777"
-                   property string foreground: "#999999"
-                   property string background: "#222222"
-                   property string background2: "#666666"
-                   property string ok: "#1A7F39"
-                   property string error: "#E5002E"
-                   property string warning: "#E5BF00"
+                    property string active: "#000000"
+                    property string inactive: "#333333"
+                    property string text: "#999999"
+                    property string textMuted: "#777777"
+                    property string foreground: "#999999"
+                    property string background: "#222222"
+                    property string background2: "#666666"
+                    property string ok: "#1A7F39"
+                    property string error: "#E5002E"
+                    property string warning: "#E5BF00"
                 }
                 property JsonObject font: JsonObject {
                     property string family: "Sans"
@@ -74,9 +74,17 @@ Singleton {
                 property string orientation: Types.orientationToString(Types.Orientation.Horizontal)
             }
 
-            property JsonObject time: JsonObject {
+            property JsonObject datetime: JsonObject {
                 property bool enabled: true
-                property string format: "yyyy-dd-MM hh:mm:ss"
+                property real size: 1
+                property JsonObject time: JsonObject {
+                    property bool enabled: true
+                    property string format: "hh:mm"
+                }
+                property JsonObject date: JsonObject {
+                    property bool enabled: true
+                    property string format: "yyyy-MM-dd"
+                }
                 property JsonObject font: JsonObject {
                     property string family
                     property real size: 1.1
