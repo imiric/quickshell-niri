@@ -26,7 +26,7 @@ PanelWindow {
                 left: parent.left
                 leftMargin: 25
             }
-            Loader { active: true; sourceComponent: Workspaces {} }
+            Loader { active: Config.data.workspaces.enabled; sourceComponent: Workspaces {} }
         }
 
         RowLayout {
@@ -37,7 +37,7 @@ PanelWindow {
                 leftMargin: 5
                 verticalCenter: parent.verticalCenter
             }
-            Loader { active: true; sourceComponent: FocusedWindow {} }
+            Loader { active: Config.data.focusedWindow.enabled; sourceComponent: FocusedWindow {} }
 
         }
 
@@ -51,12 +51,12 @@ PanelWindow {
             }
             spacing: 10
             Loader {
-                active: true
+                active: Config.data.battery.enabled
                 sourceComponent: Battery {
                     orientation: Types.stringToOrientation(Config.data.battery.orientation)
                 }
             }
-            Loader { active: true; sourceComponent: Time {} }
+            Loader { active: Config.data.time.enabled; sourceComponent: Time {} }
         }
     }
 }
