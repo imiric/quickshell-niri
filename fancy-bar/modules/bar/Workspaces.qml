@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import qs.modules.common
+import qs.services
 
 Rectangle {
     anchors.left: parent.left
@@ -27,7 +28,7 @@ Rectangle {
             spacing: 5
 
             Repeater {
-                model: niri.workspaces
+                model: Niri.workspaces
 
                 Rectangle {
                     visible: index < 11
@@ -38,7 +39,7 @@ Rectangle {
                     MouseArea {
                         anchors.fill: parent
                         cursorShape: Qt.PointingHandCursor
-                        onClicked: niri.focusWorkspaceById(model.id)
+                        onClicked: Niri.focusWorkspaceById(model.id)
                     }
                 }
             }
