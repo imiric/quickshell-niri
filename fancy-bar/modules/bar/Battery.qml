@@ -30,7 +30,7 @@ MouseArea {
         valueBarWidth: icon.bodyWidth - icon.borderWidth * 2
         valueBarHeight: icon.bodyHeight - icon.borderWidth * 2
         value: percentage
-        text: Math.round(value * 100)
+        text: Config.data.battery.showPercentage ? Math.round(value * 100) : ""
         shimmer: isCharging
         pulse: isCharging
         highlightColor: (() => {

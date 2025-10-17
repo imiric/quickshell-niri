@@ -67,6 +67,7 @@ Singleton {
                 property int critical: 10
                 property int suspend: 5
                 property bool automaticSuspend: true
+                property bool showPercentage: true
             }
 
             property JsonObject time: JsonObject {
