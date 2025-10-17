@@ -10,11 +10,10 @@ import qs.modules.common.utils
 ProgressBar {
     id: root
     property int orientation: Types.Orientation.Horizontal
-    property real valueBarWidth: 30
-    property real valueBarHeight: 18
+    property real valueBarWidth: 2
+    property real valueBarHeight: 1
     property color highlightColor: "gray"
     property color trackColor: ColorUtils.transparentize(highlightColor, 0.7)
-    property alias radius: contentItem.radius
     property color textColor: "white"
     property string text
     property bool shimmer: false
@@ -144,12 +143,14 @@ ProgressBar {
 
     Text {
         id: overlayText
-        anchors.centerIn: parent
         font: root.font
         text: root.text
         color: textColor
         opacity: 0.5
+        width: root.width
+        height: root.height
         verticalAlignment: Text.AlignVCenter
+        horizontalAlignment: Text.AlignHCenter
         style: Text.Outline
     }
 }

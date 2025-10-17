@@ -3,11 +3,16 @@ import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
 import Quickshell
 import qs.modules.common
-import qs.modules.icons
 import qs.modules.common.widgets
+import qs.modules.icons
 import qs.services
 
 MouseArea {
+    id: root
+
+    property int orientation: Types.Orientation.Horizontal
+    property real size: 1
+
     readonly property var chargeState: Battery.chargeState
     readonly property bool isCharging: Battery.isCharging
     readonly property bool isPluggedIn: Battery.isPluggedIn
@@ -22,15 +27,14 @@ MouseArea {
     ProgressBarText {
         id: batteryProgress
         anchors {
-            centerIn: parent
-            // Account for battery icon nub
-            horizontalCenterOffset: icon.orientation === Types.Orientation.Horizontal ? -icon.nubWidth / 2 : 0
-            verticalCenterOffset: icon.orientation === Types.Orientation.Vertical ? icon.nubHeight / 2 : 0
+            left: icon.left
+            bottom: icon.bottom
         }
-        valueBarWidth: icon.bodyWidth - icon.borderWidth * 2
-        valueBarHeight: icon.bodyHeight - icon.borderWidth * 2
+        valueBarWidth: icon.bodyWidth
+        valueBarHeight: icon.bodyHeight
         value: percentage
         text: Config.data.battery.showPercentage ? Math.round(value * 100) : ""
+        orientation: root.orientation
         shimmer: isCharging
         pulse: isCharging
         highlightColor: (() => {
@@ -54,11 +58,11 @@ MouseArea {
                 height: batteryProgress.height
 
                 Rectangle {
-                    x: (batteryProgress.width - icon.bodyWidth) / 2
-                    y: (batteryProgress.height - icon.bodyHeight) / 2
-                    width: icon.bodyWidth
-                    height: icon.bodyHeight
-                    radius: icon.orientation === Types.Orientation.Vertical ? icon.width * 0.2 : icon.height * 0.2
+                    x: icon.borderWidth
+                    y: icon.borderWidth
+                    width: icon.bodyWidth - icon.borderWidth * 2
+                    height: icon.bodyHeight - icon.borderWidth * 2
+                    radius: icon.bodyRadius / 2
                 }
             }
         }
@@ -67,9 +71,10 @@ MouseArea {
     BatteryIcon {
         id: icon
         anchors.centerIn: parent
-        width: 32
-        height: 20
+        size: Math.min(Config.data.battery.size * Config.data.theme.widget.size,
+                       Config.data.bar.size)
         iconColor: Config.data.theme.color.foreground
+        orientation: root.orientation
     }
 
     /*

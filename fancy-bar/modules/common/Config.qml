@@ -1,6 +1,7 @@
 pragma Singleton
 import Quickshell
 import Quickshell.Io
+import qs.modules.common
 
 Singleton {
     property var data: adapter
@@ -47,6 +48,7 @@ Singleton {
             }
 
             property JsonObject focusedWindow: JsonObject {
+                property bool enabled: true
                 property JsonObject icon: JsonObject {
                     property bool enabled: true
                     property real size: 1
@@ -63,11 +65,13 @@ Singleton {
 
             property JsonObject battery: JsonObject {
                 property bool enabled: true
+                property real size: 1.5
                 property int low: 20
                 property int critical: 10
                 property int suspend: 5
                 property bool automaticSuspend: true
                 property bool showPercentage: true
+                property string orientation: Types.orientationToString(Types.Orientation.Horizontal)
             }
 
             property JsonObject time: JsonObject {
