@@ -2,16 +2,18 @@ import QtQuick
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
 import Quickshell
+import Quickshell.Services.UPower
 import qs.modules.common
 import qs.modules.common.widgets
 import qs.modules.icons
 import qs.services
 
-MouseArea {
+Item {
     id: root
 
     property int orientation: Types.Orientation.Horizontal
     property real size: 1
+    property int barPosition: Types.Position.Top
 
     readonly property var chargeState: Battery.chargeState
     readonly property bool isCharging: Battery.isCharging
@@ -20,9 +22,8 @@ MouseArea {
     readonly property bool isLow: percentage <= Config.data.battery.low / 100
     readonly property bool isCritical: percentage <= Config.data.battery.critical / 100
 
-    implicitWidth: batteryProgress.implicitWidth
-
-    hoverEnabled: true
+    implicitWidth: icon.width
+    implicitHeight: icon.height
 
     ProgressBarText {
         id: batteryProgress
@@ -77,10 +78,55 @@ MouseArea {
         orientation: root.orientation
     }
 
-    /*
-    BatteryPopup {
-        id: batteryPopup
-        hoverTarget: root
+    HoverPopup {
+        anchors.centerIn: icon
+        hoverTarget: icon
+        anchorPosition: root.barPosition
+        contentComponent: Component {
+            ColumnLayout {
+                id: contentColumn
+                spacing: 4
+
+                Text {
+                    text: {
+                        if (Battery.energyRate > 0) {
+                            const status = (() => {
+                                if (Battery.isCharging) return "Charging";
+                                if (Battery.chargeState == UPowerDeviceState.Discharging) return "Discharging";
+                                return "Unknown";
+                            })();
+                            return status + ": " + Battery.energyRate.toFixed(1) + "W";
+                        } else {
+                            const state = Battery.chargeState;
+                            if (state == UPowerDeviceState.FullyCharged) return "Fully charged";
+                            if (state == UPowerDeviceState.PendingCharge) return "Plugged in (not charging)";
+                            if (state == UPowerDeviceState.Discharging) return "On battery";
+                            return "Unknown";
+                        }
+                    }
+                    color: Config.data.theme.color.foreground
+                    font.family: "Noto Sans"
+                    font.pixelSize: 13
+                }
+
+                Text {
+                    text: {
+                        if (Battery.isCharging) {
+                            const hours = Math.floor(Battery.timeToFull / 3600);
+                            const minutes = Math.floor((Battery.timeToFull % 3600) / 60);
+                            return "Time to full: " + hours + "h " + minutes + "m";
+                        } else {
+                            const hours = Math.floor(Battery.timeToEmpty / 3600);
+                            const minutes = Math.floor((Battery.timeToEmpty % 3600) / 60);
+                            return "Time remaining: " + hours + "h " + minutes + "m";
+                        }
+                    }
+                    color: Config.data.theme.color.foreground
+                    font.family: "Noto Sans"
+                    font.pixelSize: 13
+                    visible: Battery.energyRate > 0 && ((Battery.isCharging && Battery.timeToFull > 0) || (!Battery.isCharging && Battery.timeToEmpty > 0))
+                }
+            }
+        }
     }
-    */
 }
