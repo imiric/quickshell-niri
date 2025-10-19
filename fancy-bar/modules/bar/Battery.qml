@@ -71,7 +71,7 @@ MouseArea {
     BatteryIcon {
         id: icon
         anchors.centerIn: parent
-        size: Math.min(Config.data.battery.size * Config.data.theme.widget.size,
+        size: Math.min(Config.data.battery.scale * Config.data.theme.widget.size,
                        Config.data.bar.size)
         iconColor: Config.data.theme.color.foreground
         orientation: root.orientation

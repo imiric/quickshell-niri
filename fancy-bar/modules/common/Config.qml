@@ -51,21 +51,21 @@ Singleton {
                 property bool enabled: true
                 property JsonObject icon: JsonObject {
                     property bool enabled: true
-                    property real size: 1
+                    property real scale: 1
                 }
                 property JsonObject title: JsonObject {
                     property bool enabled: true
                 }
                 property JsonObject font: JsonObject {
                     property string family
-                    property real size: 1.2
+                    property real scale: 1.2
                     property int weight: 600
                 }
             }
 
             property JsonObject battery: JsonObject {
                 property bool enabled: true
-                property real size: 1.5
+                property real scale: 1.5
                 property int low: 20
                 property int critical: 10
                 property int suspend: 5
@@ -76,7 +76,7 @@ Singleton {
 
             property JsonObject datetime: JsonObject {
                 property bool enabled: true
-                property real size: 1
+                property real scale: 1
                 property JsonObject time: JsonObject {
                     property bool enabled: true
                     property string format: "hh:mm"
@@ -87,7 +87,7 @@ Singleton {
                 }
                 property JsonObject font: JsonObject {
                     property string family
-                    property real size: 1.1
+                    property real scale: 1.1
                     property int weight: 400
                 }
             }
@@ -95,7 +95,7 @@ Singleton {
             property JsonObject workspaces: JsonObject {
                 property bool enabled: true
                 property JsonObject icon: JsonObject {
-                    property real size: 0.6
+                    property real scale: 0.6
                     property real radius: 1
                 }
             }

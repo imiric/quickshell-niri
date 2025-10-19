@@ -76,7 +76,7 @@ Item {
 
     readonly property real baseFontSize: {
         (timeBlock.visible && dateBlock.visible ? 0.5 : 1)
-            * size * Config.data.datetime.font.size
+            * size * Config.data.datetime.font.scale
     }
     readonly property real maxBlockHeight: size - gapSize
     readonly property real gapSize: size * 0.1

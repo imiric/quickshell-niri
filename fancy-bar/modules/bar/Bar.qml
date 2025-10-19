@@ -98,7 +98,7 @@ Item {
                     active: Config.data.datetime.enabled
                     sourceComponent: DateTime {
                         size: Math.min(
-                            Config.data.bar.size * Config.data.datetime.size
+                            Config.data.bar.size * Config.data.datetime.scale
                                 - (Config.data.bar.size * 0.2),
                             Config.data.bar.size
                         )
