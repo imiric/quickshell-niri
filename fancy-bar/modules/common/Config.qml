@@ -43,7 +43,7 @@ Singleton {
             }
 
             property JsonObject bar: JsonObject {
-                property string position: "top"
+                property string position: Types.positionToString(Types.Position.Top)
                 property int size: 30
             }
 

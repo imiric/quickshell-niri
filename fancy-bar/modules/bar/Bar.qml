@@ -7,7 +7,9 @@ import qs.modules.common
 
 Item {
     id: root
-    readonly property string position: Config.data.bar.position
+    property int position: Types.Position.Top
+    property string color: "gray"
+    property int size: 30
 
     WlrLayershell {
         id: barShadow
@@ -20,8 +22,8 @@ Item {
         Rectangle {
             color: barContent.color
             anchors {
-                top: root.position === "top" ? parent.top : undefined
-                bottom: root.position === "bottom" ? parent.bottom : undefined
+                top: root.position === Types.Position.Top ? parent.top : undefined
+                bottom: root.position === Types.Position.Bottom ? parent.bottom : undefined
             }
             height: barContent.height
             // The +40 here and the -20 shadowHorizontalOffset are to have the
@@ -33,7 +35,7 @@ Item {
             layer.effect: MultiEffect {
                 shadowEnabled: true
                 // The vertical offset makes the shadow slightly more prominent
-                shadowVerticalOffset: root.position === "top" ? 5 : -5
+                shadowVerticalOffset: root.position === Types.Position.Top ? 5 : -5
                 shadowHorizontalOffset: -20
                 shadowBlur: 1
                 blurMultiplier: 1.5
@@ -44,11 +46,11 @@ Item {
 
     PanelWindow {
         id: bar
-        implicitHeight: Config.data.bar.size
+        implicitHeight: root.size
         color: "transparent"
         anchors {
-            top: root.position === "top"
-            bottom: root.position === "bottom"
+            top: root.position === Types.Position.Top
+            bottom: root.position === Types.Position.Bottom
             left: true
             right: true
         }
@@ -56,7 +58,7 @@ Item {
         Rectangle {
             id: barContent
             anchors.fill: parent
-            color: Config.data.theme.color.background
+            color: root.color
 
             RowLayout {
                 id: leftLayout
@@ -98,9 +100,8 @@ Item {
                     active: Config.data.datetime.enabled
                     sourceComponent: DateTime {
                         size: Math.min(
-                            Config.data.bar.size * Config.data.datetime.scale
-                                - (Config.data.bar.size * 0.2),
-                            Config.data.bar.size
+                            root.size * Config.data.datetime.scale - root.size * 0.2,
+                            root.size
                         )
                     }
                 }
