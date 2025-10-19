@@ -9,8 +9,6 @@ Item {
     property real size: 1
 
     readonly property real borderWidth: size * 0.05
-    readonly property real nubWidth: nub.width
-    readonly property real nubHeight: nub.height
     readonly property real bodyWidth: body.width
     readonly property real bodyHeight: body.height
     readonly property real bodyRadius: body.radius
