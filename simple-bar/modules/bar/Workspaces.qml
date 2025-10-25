@@ -34,7 +34,7 @@ Rectangle {
                     width: 15
                     height: 15
                     radius: 10
-                    color: model.isActive ? "#000000" : "#333333"
+                    color: model.isActive ? "#c4a912" : "#dac878"
                     MouseArea {
                         anchors.fill: parent
                         cursorShape: Qt.PointingHandCursor
