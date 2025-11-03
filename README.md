@@ -37,6 +37,10 @@ spawn-at-startup "quickshell" "--config" "niri-simple-bar"
 
   ![Simple bar](/simple-bar/screenshot.png)
 
+- [Fancy bar](/fancy-bar)
+
+  ![Fancy bar](/fancy-bar/screenshot.png)
+
 
 ## License
 
