@@ -38,8 +38,8 @@ Item {
                 shadowVerticalOffset: root.position === Types.Position.Top ? 5 : -5
                 shadowHorizontalOffset: -20
                 shadowBlur: 1
-                blurMultiplier: 1.5
-                shadowColor: "#C0000000"
+                blurMultiplier: 1
+                shadowColor: "#D0000000"
             }
         }
     }
