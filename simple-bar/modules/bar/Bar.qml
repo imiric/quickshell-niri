@@ -33,7 +33,7 @@ PanelWindow {
             }
 
             Text {
-                text: niri.focusedWindowTitle
+                text: niri.focusedWindow?.title ?? ""
                 font.family: "Barlow Medium"
                 font.pixelSize: 16
                 color: "#999999"
