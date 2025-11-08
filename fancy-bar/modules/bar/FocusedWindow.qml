@@ -24,6 +24,9 @@ Row {
     }
 
     Text {
+        // FIXME: Make the width proportional to the width of the container.
+        width: 1000
+        elide: Text.ElideRight
         anchors.verticalCenter: parent.verticalCenter
         text: Niri.focusedWindow?.title ?? ""
         font.family: Config.data.focusedWindow.font.family || Config.data.theme.font.family
