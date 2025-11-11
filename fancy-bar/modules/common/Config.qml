@@ -29,10 +29,20 @@ Singleton {
                     property string error: "#E5002E"
                     property string warning: "#E5BF00"
                 }
+                // Proportional font
                 property JsonObject font: JsonObject {
                     property string family: "Sans"
-                    // Size in pixels of all fonts. The actual size of fonts in
-                    // individual components will be proportial to this value.
+                    // Size in pixels of all proportional fonts. The actual size
+                    // of fonts in individual components will be proportional to
+                    // this value.
+                    property real size: 14
+                }
+                // Monospace font
+                property JsonObject fontMono: JsonObject {
+                    property string family: "Monospace"
+                    // Size in pixels of all monospace fonts. The actual size of
+                    // fonts in individual components will be proportional to
+                    // this value.
                     property real size: 14
                 }
                 property JsonObject widget: JsonObject {
