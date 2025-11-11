@@ -23,6 +23,7 @@ Singleton {
                     property string text: "#999999"
                     property string textMuted: "#777777"
                     property string foreground: "#999999"
+                    property string foreground2: "#777777"
                     property string background: "#222222"
                     property string background2: "#666666"
                     property string ok: "#1A7F39"
@@ -70,6 +71,22 @@ Singleton {
                     property string family
                     property real scale: 1.2
                     property int weight: 600
+                }
+            }
+
+            property JsonObject cpu: JsonObject {
+                property bool enabled: true
+                property real scale: 1
+                property real history: 30           // Seconds
+                property real updateInterval: 1000  // Milliseconds
+                property string lineColor: Config.data.theme.color.foreground
+                property string lowUsageColor: "#802D3154"   // Cool blue
+                property string highUsageColor: "#80FF4500"  // Bright orange/red
+                property int numTopProcesses: 5
+                property JsonObject icon: JsonObject {
+                    property bool enabled: true
+                    property real scale: 0.85
+                    property string color: Config.data.theme.color.foreground2
                 }
             }
 

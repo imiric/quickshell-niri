@@ -90,6 +90,11 @@ Item {
                     rightMargin: 25
                 }
                 spacing: 10
+
+                Loader {
+                    active: Config.data.cpu.enabled
+                    sourceComponent: CPU {}
+                }
                 Loader {
                     active: Config.data.battery.enabled
                     sourceComponent: Battery {
