@@ -96,6 +96,10 @@ Item {
                     sourceComponent: CPU {}
                 }
                 Loader {
+                    active: Config.data.ram.enabled
+                    sourceComponent: RAM {}
+                }
+                Loader {
                     active: Config.data.battery.enabled
                     sourceComponent: Battery {
                         orientation: Types.stringToOrientation(Config.data.battery.orientation)

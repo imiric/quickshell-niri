@@ -35,10 +35,10 @@ Singleton {
                     if (tp.length == numTopProcesses) break;
                     let parts = line.trim().split(/\s+/);
                     if (parts.length === 3) {
-                        let pid = parseInt(parts[0]);
                         let comm = parts[1];
-                        let cpu = parseFloat(parts[2]);
                         if (comm === 'ps') continue;  // Skip ps itself
+                        let pid = parseInt(parts[0]);
+                        let cpu = parseFloat(parts[2]);
                         tp.push({pid: pid, comm: comm, cpu: cpu});
                     }
                 }
