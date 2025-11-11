@@ -12,8 +12,6 @@ Item {
     id: root
 
     property int orientation: Types.Orientation.Horizontal
-    property real size: 1
-    property int barPosition: Types.Position.Top
 
     readonly property var chargeState: Battery.chargeState
     readonly property bool isCharging: Battery.isCharging
@@ -48,7 +46,8 @@ Item {
             return Config.data.theme.color.ok;
         })()
         font.family: "Noto Sans"
-        font.pixelSize: 14
+        font.bold: true
+        font.pixelSize: Config.data.theme.font.size * Config.data.battery.scale * 0.7
         textColor: Config.data.theme.color.foreground
 
         // Clip the progress bar within the borders of the battery icon body
@@ -81,7 +80,7 @@ Item {
     HoverPopup {
         anchors.centerIn: icon
         hoverTarget: icon
-        anchorPosition: root.barPosition
+        anchorPosition: Types.stringToPosition(Config.data.bar.position)
         contentComponent: Component {
             ColumnLayout {
                 id: contentColumn
@@ -105,8 +104,8 @@ Item {
                         }
                     }
                     color: Config.data.theme.color.foreground
-                    font.family: "Noto Sans"
-                    font.pixelSize: 13
+                    font.family: Config.data.theme.font.family
+                    font.pixelSize: Config.data.theme.font.size
                 }
 
                 Text {
@@ -122,8 +121,8 @@ Item {
                         }
                     }
                     color: Config.data.theme.color.foreground
-                    font.family: "Noto Sans"
-                    font.pixelSize: 13
+                    font.family: Config.data.theme.font.family
+                    font.pixelSize: Config.data.theme.font.size
                     visible: Battery.energyRate > 0 && ((Battery.isCharging && Battery.timeToFull > 0) || (!Battery.isCharging && Battery.timeToEmpty > 0))
                 }
             }

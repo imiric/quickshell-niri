@@ -94,7 +94,6 @@ Item {
                     active: Config.data.battery.enabled
                     sourceComponent: Battery {
                         orientation: Types.stringToOrientation(Config.data.battery.orientation)
-                        barPosition: root.position
                     }
                 }
                 Loader {
