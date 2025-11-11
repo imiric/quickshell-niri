@@ -24,4 +24,4 @@ A more advanced variant of the [Simple bar](../simple-bar).
 
 - Battery widget: [UPower](https://upower.freedesktop.org/)
 
-- Fonts: [Barlow](https://tribby.com/fonts/barlow/), [Noto Sans](https://notofonts.github.io/)
+- Fonts: [Noto Sans](https://notofonts.github.io/)
