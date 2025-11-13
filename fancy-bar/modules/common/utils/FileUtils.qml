@@ -20,7 +20,13 @@ Singleton {
     readonly property int bytesPerPB: 1000 ** 5
     readonly property int bytesPerEB: 1000 ** 6
 
-    property var units: ({
+    // Unit hierarchies
+    readonly property var unitsIECByte: ["KiB", "MiB", "GiB", "TiB", "PiB", "EiB"]
+    readonly property var unitsMetricByte: ["KB", "MB", "GB", "TB", "PB", "EB"]
+    readonly property var unitsIECBit: ["Kib", "Mib", "Gib", "Tib", "Pib", "Eib"]
+    readonly property var unitsMetricBit: ["Kb", "Mb", "Gb", "Tb", "Pb", "Eb"]
+
+    readonly property var units: ({
         "B": 1,
         "KB": bytesPerKB,
         "KiB": bytesPerKib,
@@ -33,7 +39,21 @@ Singleton {
         "PB": bytesPerPB,
         "PiB": bytesPerPib,
         "EB": bytesPerEB,
-        "EiB": bytesPerEib
+        "EiB": bytesPerEib,
+        // Bit units (e.g. 1 Kb = 1000 bits = bytesPerKB / 8 bytes)
+        "b": 1 / 8.0,
+        "Kb": bytesPerKB / 8.0,
+        "Kib": bytesPerKib / 8.0,
+        "Mb": bytesPerMB / 8.0,
+        "Mib": bytesPerMib / 8.0,
+        "Gb": bytesPerGB / 8.0,
+        "Gib": bytesPerGib / 8.0,
+        "Tb": bytesPerTB / 8.0,
+        "Tib": bytesPerTib / 8.0,
+        "Pb": bytesPerPB / 8.0,
+        "Pib": bytesPerPib / 8.0,
+        "Eb": bytesPerEB / 8.0,
+        "Eib": bytesPerEib / 8.0
     })
 
     /**
@@ -48,7 +68,26 @@ Singleton {
         if (!units.hasOwnProperty(fromUnit) || !units.hasOwnProperty(toUnit)) {
             throw new Error("Invalid unit. Supported units: " + Object.keys(units).join(", "));
         }
+        if (fromUnit === toUnit) {
+            return value;
+        }
         var bytes = value * units[fromUnit];
         return bytes / units[toUnit];
+    }
+
+    // Determine unit type and return ordered hierarchy.
+    function getUnitHierarchy(unit) {
+        switch (true) {
+        case unit.endsWith('iB'):
+            return unitsIECByte;
+        case unit.endsWith('B'):
+            return unitsMetricByte;
+        case unit.endsWith('ib'):
+            return unitsIECBit;
+        case unit.endsWith('b'):
+            return unitsMetricBit;
+        default:
+            throw new Error(`Invalid unit: ${unit}. Supported units: ` + Object.keys(units).join(", "));
+        }
     }
 }

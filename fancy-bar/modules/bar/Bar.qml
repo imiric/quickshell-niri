@@ -100,6 +100,10 @@ Item {
                     sourceComponent: RAM {}
                 }
                 Loader {
+                    active: Config.data.network.enabled
+                    sourceComponent: Network {}
+                }
+                Loader {
                     active: Config.data.battery.enabled
                     sourceComponent: Battery {
                         orientation: Types.stringToOrientation(Config.data.battery.orientation)

@@ -12,6 +12,12 @@ QtObject {
         Bottom
     }
 
+    enum Network {
+        Wired,
+        Wireless,
+        Virtual
+    }
+
     /**
      * I would prefer to use stdlib enum conversion functions:
      * https://doc.qt.io/qt-6/qtqml-typesystem-enumerations.html
@@ -64,6 +70,35 @@ QtObject {
             return "bottom"
         default:
             console.error("Error: invalid Position value:", value)
+            return "";
+        }
+    }
+
+    function stringToNetwork(str) {
+        const normalized = str.toLowerCase();
+        switch (normalized) {
+        case "wired":
+            return Types.Network.Wired;
+        case "wireless":
+            return Types.Network.Wireless;
+        case "virtual":
+            return Types.Network.Virtual;
+        default:
+            console.error("Error: invalid Network value:", str)
+            return -1;
+        }
+    }
+
+    function networkToString(value) {
+        switch (value) {
+        case Types.Network.Wired:
+            return "wired"
+        case Types.Network.Wireless:
+            return "wireless"
+        case Types.Network.Virtual:
+            return "virtual";
+        default:
+            console.error("Error: invalid Network value:", value)
             return "";
         }
     }

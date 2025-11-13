@@ -115,6 +115,34 @@ Singleton {
                 }
             }
 
+            property JsonObject network: JsonObject {
+                property bool enabled: true
+                property real scale: 1
+                // For up/down rates and graph updates
+                property real rateUpdateInterval: 1000 // Milliseconds
+                // For interface information (link speed, SSID, LAN IPs, etc.)
+                property real infoUpdateInterval: 5 // Seconds
+                // For external information (WAN IP)
+                property real externalUpdateInterval: 600 // Seconds
+                property JsonObject rates: JsonObject {
+                    property bool enabled: true
+                    property string baseUnit: "KiB"
+                }
+                property JsonObject graph: JsonObject {
+                    property bool enabled: true
+                    property real history: 30 // Seconds
+                }
+                property JsonObject icon: JsonObject {
+                    property bool enabled: true
+                    property real scale: 1
+                    property string color: Config.data.theme.color.foreground2
+                }
+                property JsonObject colors: JsonObject {
+                    property string rx: "#1F77B4"  // Blue
+                    property string tx: "#FF7F0E"  // Orange
+                }
+            }
+
             property JsonObject battery: JsonObject {
                 property bool enabled: true
                 property real scale: 1.5
