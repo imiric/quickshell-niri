@@ -99,16 +99,19 @@ Singleton {
                 property real updateInterval: 1000  // Milliseconds
                 property string sizeUnit: "GiB"
                 property int numTopProcesses: 5
+                property JsonObject icon: JsonObject {
+                    property bool enabled: true
+                    property real scale: 1
+                    property string color: Config.data.theme.color.foreground2
+                }
                 property JsonObject colors: JsonObject {
                     property string used: "#2E86C1"           // Blue
                     property string shared: "#004880"         // Dark blue
                     property string buffersCached: "#7D3C98"  // Purple
                     property string free: "#666666"           // Gray
                 }
-                property JsonObject icon: JsonObject {
+                property JsonObject graph: JsonObject {
                     property bool enabled: true
-                    property real scale: 1
-                    property string color: Config.data.theme.color.foreground2
                 }
             }
 

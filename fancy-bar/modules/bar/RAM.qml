@@ -11,9 +11,9 @@ Item {
     id: root
 
     property real scale: Config.data.ram.scale || 1.0
-    property real updateInterval: Config.data.ram.updateInterval || 1000  // Milliseconds
 
-    implicitWidth: 120 * scale
+    implicitWidth: (icon.visible ? icon.width : 0)
+        + (graph.visible ? graph.width : 0) + 4
     implicitHeight: Config.data.bar.size - Config.data.bar.size * 0.2
 
     RAMIcon {
@@ -26,12 +26,13 @@ Item {
 
     Canvas {
         id: graph
+        visible: Config.data.ram.graph.enabled
         anchors {
             top: parent.top
             bottom: parent.bottom
             right: parent.right
         }
-        width: (icon.visible ? root.implicitWidth - icon.width - 5 : root.implicitWidth)
+        width: 100 * root.scale
 
         onPaint: {
             if (RAM.total === 0) return;
