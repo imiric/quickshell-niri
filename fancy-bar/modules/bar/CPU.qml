@@ -11,14 +11,15 @@ Item {
     id: root
 
     property real scale: Config.data.cpu.scale || 1.0
-    property real history: Config.data.cpu.history || 60  // Seconds
+    property real history: Config.data.cpu.graph.history || 60  // Seconds
     property real updateInterval: Config.data.cpu.updateInterval || 1000  // Milliseconds
-    property color lineColor: Config.data.cpu.lineColor || Config.data.theme.color.foreground
-    property color lowUsageColor: Config.data.cpu.lowUsageColor
-    property color highUsageColor: Config.data.cpu.highUsageColor
+    property color lineColor: Config.data.cpu.graph.lineColor
+    property color lowUsageColor: Config.data.cpu.graph.lowUsageColor
+    property color highUsageColor: Config.data.cpu.graph.highUsageColor
     readonly property color mixedUsageColor: ColorUtils.mix(lowUsageColor, highUsageColor)
 
-    implicitWidth: 120 * scale
+    implicitWidth: (icon.visible ? icon.width : 0)
+        + (graph.visible ? graph.width : 0) + 4
     implicitHeight: Config.data.bar.size - Config.data.bar.size * 0.2
 
     // Buffer for graph points (rolling window)
@@ -26,13 +27,14 @@ Item {
 
     // Initial dummy point to avoid empty graph
     Component.onCompleted: {
+        if (!graph.visible) return;
         points.push({ x: Date.now(), y: 0.0 });
         graph.requestPaint();
     }
 
     Timer {
         interval: updateInterval
-        running: true
+        running: Config.data.cpu.graph.enabled
         repeat: true
         onTriggered: updateGraph()
     }
@@ -62,12 +64,13 @@ Item {
 
     Canvas {
         id: graph
+        visible: Config.data.cpu.graph.enabled
         anchors {
             top: parent.top
             bottom: parent.bottom
             right: parent.right
         }
-        width: (icon.visible ? root.implicitWidth - icon.width - 5 : root.implicitWidth)
+        width: 100 * root.scale
 
         onPaint: {
             let ctx = getContext("2d");

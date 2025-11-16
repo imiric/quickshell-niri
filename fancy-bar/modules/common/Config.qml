@@ -77,16 +77,19 @@ Singleton {
             property JsonObject cpu: JsonObject {
                 property bool enabled: true
                 property real scale: 1
-                property real history: 30           // Seconds
                 property real updateInterval: 1000  // Milliseconds
-                property string lineColor: Config.data.theme.color.foreground
-                property string lowUsageColor: "#802D3154"   // Cool blue
-                property string highUsageColor: "#80FF4500"  // Bright orange/red
                 property int numTopProcesses: 5
                 property JsonObject icon: JsonObject {
                     property bool enabled: true
                     property real scale: 0.85
                     property string color: Config.data.theme.color.foreground2
+                }
+                property JsonObject graph: JsonObject {
+                    property bool enabled: true
+                    property real history: 30 // Seconds
+                    property string lineColor: Config.data.theme.color.foreground
+                    property string lowUsageColor: "#802D3154"   // Cool blue
+                    property string highUsageColor: "#80FF4500"  // Bright orange/red
                 }
             }
 
