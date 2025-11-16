@@ -104,8 +104,8 @@ Item {
 
                 Text {
                     Layout.alignment: Qt.AlignHCenter
-                    font.family: Config.data.theme.fontMono.family
-                    font.pixelSize: Config.data.theme.fontMono.size
+                    font.family: Config.data.theme.font.family
+                    font.pixelSize: Config.data.theme.font.size
                     color: Config.data.theme.color.foreground
                     textFormat: Text.RichText
 
@@ -161,9 +161,9 @@ Item {
                         let createRow = function(rowData) {
                             return `
 <tr>
-  <td align="left" width="60"><font color="${rowData.color}">${rowData.label}</font>:</td>
-  <td align="right" width="70">${rowData.value.toFixed(2)}${Config.data.ram.sizeUnit}</td>
-  <td align="right" width="60">${typeof rowData.pct !== 'undefined' ? rowData.pct.toFixed(2) + "%" : ""}</td>
+  <td align="left" width="60"><span style="color: ${rowData.color}">${rowData.label}</span>:</td>
+  <td align="right" width="70"><span style="font-family: '${Config.data.theme.fontMono.family}'; font-size: ${Config.data.theme.fontMono.size}px;">${rowData.value.toFixed(2)}${Config.data.ram.sizeUnit}</span></td>
+  <td align="right" width="60"><span style="font-family: '${Config.data.theme.fontMono.family}'; font-size: ${Config.data.theme.fontMono.size}px;">${typeof rowData.pct !== 'undefined' ? rowData.pct.toFixed(2) + "%" : ""}</span></td>
 </tr>`;
                         };
 
