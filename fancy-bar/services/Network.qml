@@ -236,13 +236,27 @@ Singleton {
         root.networkType = networkType;
         resetState();
         updateInfo();
+
+        // Persist the selection
+        BarState.data.network.activeInterface = interfaceName;
+        BarState.data.network.type = networkType;
     }
 
-    // Internal: Auto-select if none/invalid
-    // Try the first wireless interface if available, otherwise the first wired
-    // interface if available, otherwise the loopback device.
+    // Internal: Auto-select the most appropriate interface, if none is already
+    // selected. Priority order: persisted state, wireless, wired, loopback.
     function autoSelectInterface() {
         if (activeInterface) return;
+
+        // Wait for the state file to be loaded
+        BarState.view.waitForJob();
+
+        // Try persisted state first
+        const state = BarState.data.network;
+        if (state.activeInterface && interfaces.get(state.type)?.includes(state.activeInterface)) {
+            activeInterface = state.activeInterface;
+            networkType = state.type;
+            return;
+        }
 
         let wireless = interfaces.get(Types.Network.Wireless),
             wired = interfaces.get(Types.Network.Wired),
@@ -263,6 +277,10 @@ Singleton {
             activeInterface = iface
             networkType = ifaceType
         }
+
+        // Persist the selection
+        state.activeInterface = iface;
+        state.type = ifaceType;
     }
 
     function updateRates() {
