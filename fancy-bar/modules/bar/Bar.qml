@@ -4,12 +4,36 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Wayland
 import qs.modules.common
+import qs.modules.common.utils
+import qs.modules.icons
 
 Item {
     id: root
     property int position: Types.Position.Top
     property string color: "gray"
     property int size: 30
+
+    property var rightWidgetOrder: ["cpu", "ram", "network", "battery", "datetime"]
+
+    property var rightWidgetModel: {
+        let model = [];
+        let hasPreviousWidget = false;
+
+        for (let i = 0; i < rightWidgetOrder.length; i++) {
+            const widgetName = rightWidgetOrder[i];
+            const isEnabled = Config.data[widgetName].enabled;
+
+            if (isEnabled) {
+                if (hasPreviousWidget) {
+                    model.push({type: "separator"});
+                }
+                model.push({type: "widget", name: widgetName});
+                hasPreviousWidget = true;
+            }
+        }
+
+        return model;
+    }
 
     WlrLayershell {
         id: barShadow
@@ -71,51 +95,78 @@ Item {
 
             RowLayout {
                 id: centerLayout
-
                 anchors {
                     left: leftLayout.right
                     leftMargin: 5
                     verticalCenter: parent.verticalCenter
                 }
                 Loader { active: Config.data.focusedWindow.enabled; sourceComponent: FocusedWindow {} }
-
             }
 
             RowLayout {
                 id: rightLayout
-
                 anchors {
                     verticalCenter: parent.verticalCenter
                     right: parent.right
                     rightMargin: 25
                 }
-                spacing: 10
+                spacing: 6
 
-                Loader {
-                    active: Config.data.cpu.enabled
-                    sourceComponent: CPU {}
+                Component {
+                    id: separatorComponent
+                    SeparatorIcon {
+                        color: ColorUtils.transparentize(Config.data.theme.color.foreground2, 0.5)
+                        angle: 90
+                        length: bar.height - bar.height * 0.4
+                        strokeSize: 4
+                        spacing: 1.5
+                        lineType: "dotted"
+                        dashLength: 1
+                        edgeRadius: 4
+                        Layout.alignment: Qt.AlignVCenter
+                    }
                 }
-                Loader {
-                    active: Config.data.ram.enabled
-                    sourceComponent: RAM {}
-                }
-                Loader {
-                    active: Config.data.network.enabled
-                    sourceComponent: Network {}
-                }
-                Loader {
-                    active: Config.data.battery.enabled
-                    sourceComponent: Battery {
+
+                // Widget component definitions
+                Component { id: cpuComponent; CPU {} }
+                Component { id: ramComponent; RAM {} }
+                Component { id: networkComponent; Network {} }
+                Component {
+                    id: batteryComponent
+                    Battery {
                         orientation: Types.stringToOrientation(Config.data.battery.orientation)
                     }
                 }
-                Loader {
-                    active: Config.data.datetime.enabled
-                    sourceComponent: DateTime {
+                Component {
+                    id: datetimeComponent
+                    DateTime {
                         size: Math.min(
                             root.size * Config.data.datetime.scale - root.size * 0.2,
-                            root.size
+                            root.size,
                         )
+                    }
+                }
+
+                // Dynamic layout generator
+                Repeater {
+                    model: root.rightWidgetModel
+
+                    delegate: Loader {
+                        active: true
+                        sourceComponent: {
+                            const componentMap = {
+                                "cpu": cpuComponent,
+                                "ram": ramComponent,
+                                "network": networkComponent,
+                                "battery": batteryComponent,
+                                "datetime": datetimeComponent,
+                            }
+                            if (modelData.type === "separator") {
+                                return separatorComponent;
+                            } else {
+                                return componentMap[modelData.name];
+                            }
+                        }
                     }
                 }
             }
