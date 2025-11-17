@@ -9,7 +9,7 @@ A more advanced variant of the [Simple bar](../simple-bar).
 
 ### Demo
 
-<video src="https://gist.github.com/imiric/c96f7d182e5c59cff05619d14f4049bd/raw/085ce1375187c025e3c50541974026c881bcc17d/20251117_165232-643b392.mp4" width="796" height="574"></video>
+https://github.com/user-attachments/assets/0d15347d-0c25-4f51-834e-02ac19055b43
 
 ### Features
 
