@@ -13,7 +13,7 @@ Item {
     property string color: "gray"
     property int size: 30
 
-    property var rightWidgetOrder: ["cpu", "ram", "network", "battery", "datetime"]
+    property var rightWidgetOrder: ["cpu", "ram", "network", "battery", "clock"]
 
     property var rightWidgetModel: {
         let model = [];
@@ -138,10 +138,10 @@ Item {
                     }
                 }
                 Component {
-                    id: datetimeComponent
-                    DateTime {
+                    id: clockComponent
+                    Clock {
                         size: Math.min(
-                            root.size * Config.data.datetime.scale - root.size * 0.2,
+                            root.size * Config.data.clock.scale - root.size * 0.2,
                             root.size,
                         )
                     }
@@ -159,7 +159,7 @@ Item {
                                 "ram": ramComponent,
                                 "network": networkComponent,
                                 "battery": batteryComponent,
-                                "datetime": datetimeComponent,
+                                "clock": clockComponent,
                             }
                             if (modelData.type === "separator") {
                                 return separatorComponent;

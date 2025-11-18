@@ -3,7 +3,7 @@ import QtQuick.Layouts
 import Quickshell
 import qs.modules.common
 
-// DateTime component that displays time and date in a vertically stacked
+// Clock component that displays time and date in a vertically stacked
 // layout, with both blocks horizontally centered along the same axis. The width
 // and height of the blocks is dynamically determined to avoid layout shifting
 // with proportional fonts as digits change, and to make the shorter block
@@ -26,14 +26,14 @@ Item {
         id: timeMetrics
         font: timeBlock.font
         text: Qt.formatDateTime(new Date(2000, 12, 30, 23, 59, 59),
-                                Config.data.datetime.time.format || "hh:mm")
+                                Config.data.clock.time.format || "hh:mm")
     }
 
     TextMetrics {
         id: dateMetrics
         font: dateBlock.font
         text: Qt.formatDateTime(new Date(2000, 12, 30),
-                                Config.data.datetime.date.format || "yyyy-MM-dd")
+                                Config.data.clock.date.format || "yyyy-MM-dd")
     }
 
     ColumnLayout {
@@ -49,12 +49,12 @@ Item {
             Layout.preferredHeight: (root.size - gapSize) / 2
             Layout.preferredWidth: timeMetrics.advanceWidth
 
-            text: Qt.formatDateTime(clock.date, Config.data.datetime.time.format || "hh:mm")
-            font.family: Config.data.datetime.font.family || Config.data.theme.font.family
+            text: Qt.formatDateTime(clock.date, Config.data.clock.time.format || "hh:mm")
+            font.family: Config.data.clock.font.family || Config.data.theme.font.family
             font.pixelSize: baseFontSize * timeScale
-            font.weight: Config.data.datetime.font.weight
+            font.weight: Config.data.clock.font.weight
             color: Config.data.theme.color.textMuted
-            visible: Config.data.datetime.time.enabled !== false
+            visible: Config.data.clock.time.enabled !== false
             verticalAlignment: Text.AlignVCenter
         }
 
@@ -64,19 +64,19 @@ Item {
             Layout.preferredHeight: (root.size - gapSize) / 2
             Layout.preferredWidth: dateMetrics.advanceWidth
 
-            text: Qt.formatDateTime(clock.date, Config.data.datetime.date.format || "yyyy-MM-dd")
-            font.family: Config.data.datetime.font.family || Config.data.theme.font.family
+            text: Qt.formatDateTime(clock.date, Config.data.clock.date.format || "yyyy-MM-dd")
+            font.family: Config.data.clock.font.family || Config.data.theme.font.family
             font.pixelSize: baseFontSize * dateScale
-            font.weight: Config.data.datetime.font.weight
+            font.weight: Config.data.clock.font.weight
             color: Config.data.theme.color.textMuted
-            visible: Config.data.datetime.date.enabled !== false
+            visible: Config.data.clock.date.enabled !== false
             verticalAlignment: Text.AlignVCenter
         }
     }
 
     readonly property real baseFontSize: {
         (timeBlock.visible && dateBlock.visible ? 0.5 : 1)
-            * size * Config.data.datetime.font.scale
+            * size * Config.data.clock.font.scale
     }
     readonly property real maxBlockHeight: size - gapSize
     readonly property real gapSize: size * 0.1

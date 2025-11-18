@@ -154,7 +154,7 @@ Singleton {
                 property string orientation: Types.orientationToString(Types.Orientation.Horizontal)
             }
 
-            property JsonObject datetime: JsonObject {
+            property JsonObject clock: JsonObject {
                 property bool enabled: true
                 property real scale: 1
                 property JsonObject time: JsonObject {
