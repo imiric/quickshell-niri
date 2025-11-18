@@ -11,6 +11,10 @@ Singleton {
         watchChanges: true
         onFileChanged: reload()
         onAdapterUpdated: writeAdapter()
+        blockLoading: true
+        // For some reason, this is needed to read workspaces.maxCount from the
+        // config.json.
+        preload: false
 
         JsonAdapter {
             id: adapter
@@ -18,8 +22,6 @@ Singleton {
             // Global theme. Source of default and base values for all components.
             property JsonObject theme: JsonObject {
                 property JsonObject colors: JsonObject {
-                    property string active: "#000000"
-                    property string inactive: "#333333"
                     property string text: "#999999"
                     property string textMuted: "#777777"
                     property string foreground: "#999999"
@@ -186,9 +188,14 @@ Singleton {
             }
 
             property JsonObject workspaces: JsonObject {
+                property int maxCount: 10
                 property JsonObject icon: JsonObject {
                     property real scale: 0.6
                     property real radius: 1
+                }
+                property JsonObject colors: JsonObject {
+                    property string active: "#000000"
+                    property string inactive: "#333333"
                 }
             }
         }

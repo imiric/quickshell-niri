@@ -114,6 +114,7 @@ Item {
                 widgetComponents: bar.widgetComponents
 
                 anchors {
+                    verticalCenter: parent.verticalCenter
                     left: parent.left
                     leftMargin: 25
                 }
