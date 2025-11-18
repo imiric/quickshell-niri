@@ -3,7 +3,7 @@ import qs.modules.common
 import qs.services
 
 Row {
-    spacing: 5
+    spacing: 4
     Image {
         anchors.verticalCenter: parent.verticalCenter
         source: Niri.focusedWindow?.iconPath ? "file://" + Niri.focusedWindow?.iconPath : ""

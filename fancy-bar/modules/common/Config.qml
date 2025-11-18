@@ -82,7 +82,7 @@ Singleton {
             property JsonObject focusedWindow: JsonObject {
                 property JsonObject icon: JsonObject {
                     property bool enabled: true
-                    property real scale: 1
+                    property real scale: 0.9
                 }
                 property JsonObject title: JsonObject {
                     property bool enabled: true
