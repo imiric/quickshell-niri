@@ -7,7 +7,7 @@ Niri {
 
     Component.onCompleted: connect()
 
-    onConnected: console.log("Connected to niri")
+    onConnected: console.info("Connected to niri")
     onErrorOccurred: function(error) {
         console.error("Niri error:", error)
     }
