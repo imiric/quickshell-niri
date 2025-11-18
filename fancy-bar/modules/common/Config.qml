@@ -53,6 +53,11 @@ Singleton {
                 }
             }
 
+            // Defines widgets that should be shown, and their order.
+            property JsonObject enabledWidgets: JsonObject {
+                property list<string> right: ["cpu", "ram", "network", "battery", "clock"]
+            }
+
             property JsonObject bar: JsonObject {
                 property string position: Types.positionToString(Types.Position.Top)
                 property int size: 30
@@ -75,7 +80,6 @@ Singleton {
             }
 
             property JsonObject cpu: JsonObject {
-                property bool enabled: true
                 property real scale: 1
                 property real updateInterval: 1000  // Milliseconds
                 property int numTopProcesses: 5
@@ -94,7 +98,6 @@ Singleton {
             }
 
             property JsonObject ram: JsonObject {
-                property bool enabled: true
                 property real scale: 1
                 property real updateInterval: 1000  // Milliseconds
                 property string sizeUnit: "GiB"
@@ -116,7 +119,6 @@ Singleton {
             }
 
             property JsonObject network: JsonObject {
-                property bool enabled: true
                 property real scale: 1
                 // For up/down rates and graph updates
                 property real rateUpdateInterval: 1000 // Milliseconds
@@ -144,7 +146,6 @@ Singleton {
             }
 
             property JsonObject battery: JsonObject {
-                property bool enabled: true
                 property real scale: 1.5
                 property int low: 20
                 property int critical: 10
@@ -155,7 +156,6 @@ Singleton {
             }
 
             property JsonObject clock: JsonObject {
-                property bool enabled: true
                 property real scale: 1
                 property JsonObject time: JsonObject {
                     property bool enabled: true

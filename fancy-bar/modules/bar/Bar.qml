@@ -13,28 +13,6 @@ Item {
     property string color: "gray"
     property int size: 30
 
-    property var rightWidgetOrder: ["cpu", "ram", "network", "battery", "clock"]
-
-    property var rightWidgetModel: {
-        let model = [];
-        let hasPreviousWidget = false;
-
-        for (let i = 0; i < rightWidgetOrder.length; i++) {
-            const widgetName = rightWidgetOrder[i];
-            const isEnabled = Config.data[widgetName].enabled;
-
-            if (isEnabled) {
-                if (hasPreviousWidget) {
-                    model.push({type: "separator"});
-                }
-                model.push({type: "widget", name: widgetName});
-                hasPreviousWidget = true;
-            }
-        }
-
-        return model;
-    }
-
     WlrLayershell {
         id: barShadow
         implicitHeight: bar.height + 100
@@ -147,26 +125,43 @@ Item {
                     }
                 }
 
+                readonly property var componentMap: {
+                    "cpu": cpuComponent,
+                    "ram": ramComponent,
+                    "network": networkComponent,
+                    "battery": batteryComponent,
+                    "clock": clockComponent,
+                }
+
+                readonly property var widgetModel: {
+                    let model = [];
+                    let hasPreviousWidget = false;
+                    const enabledWidgets = Config.data.enabledWidgets.right;
+
+                    for (let i = 0; i < enabledWidgets.length; i++) {
+                        const widget = rightLayout.componentMap[enabledWidgets[i]];
+                        if (!widget) {
+                            console.error(`invalid widget: ${enabledWidgets[i]}`);
+                            continue;
+                        }
+
+                        if (hasPreviousWidget) {
+                            model.push(separatorComponent);
+                        }
+                        model.push(widget);
+                        hasPreviousWidget = true;
+                    }
+
+                    return model;
+                }
+
                 // Dynamic layout generator
                 Repeater {
-                    model: root.rightWidgetModel
+                    model: rightLayout.widgetModel
 
                     delegate: Loader {
                         active: true
-                        sourceComponent: {
-                            const componentMap = {
-                                "cpu": cpuComponent,
-                                "ram": ramComponent,
-                                "network": networkComponent,
-                                "battery": batteryComponent,
-                                "clock": clockComponent,
-                            }
-                            if (modelData.type === "separator") {
-                                return separatorComponent;
-                            } else {
-                                return componentMap[modelData.name];
-                            }
-                        }
+                        sourceComponent: modelData
                     }
                 }
             }
