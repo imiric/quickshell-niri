@@ -6,7 +6,7 @@ import qs.services
 
 Rectangle {
     anchors.left: parent.left
-    color: Config.data.theme.color.background2
+    color: Config.data.theme.colors.background2
     height: 25
     width: 215
     bottomLeftRadius: 10
@@ -35,7 +35,7 @@ Rectangle {
                     width: Config.data.workspaces.icon.scale * Config.data.theme.widget.size
                     height: Config.data.workspaces.icon.scale * Config.data.theme.widget.size
                     radius: Config.data.workspaces.icon.scale * Config.data.theme.widget.size * Config.data.workspaces.icon.radius
-                    color: model.isActive ? Config.data.theme.color.active : Config.data.theme.color.inactive
+                    color: model.isActive ? Config.data.theme.colors.active : Config.data.theme.colors.inactive
                     MouseArea {
                         anchors.fill: parent
                         cursorShape: Qt.PointingHandCursor

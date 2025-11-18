@@ -17,7 +17,7 @@ Singleton {
 
             // Global theme. Source of default and base values for all components.
             property JsonObject theme: JsonObject {
-                property JsonObject color: JsonObject {
+                property JsonObject colors: JsonObject {
                     property string active: "#000000"
                     property string inactive: "#333333"
                     property string text: "#999999"
@@ -99,12 +99,12 @@ Singleton {
                 property JsonObject icon: JsonObject {
                     property bool enabled: true
                     property real scale: 0.85
-                    property string color: Config.data.theme.color.foreground2
+                    property string color: Config.data.theme.colors.foreground2
                 }
                 property JsonObject graph: JsonObject {
                     property bool enabled: true
                     property real history: 30 // Seconds
-                    property string lineColor: Config.data.theme.color.foreground
+                    property string lineColor: Config.data.theme.colors.foreground
                     property string lowUsageColor: "#802D3154"   // Cool blue
                     property string highUsageColor: "#80FF4500"  // Bright orange/red
                 }
@@ -118,7 +118,7 @@ Singleton {
                 property JsonObject icon: JsonObject {
                     property bool enabled: true
                     property real scale: 1
-                    property string color: Config.data.theme.color.foreground2
+                    property string color: Config.data.theme.colors.foreground2
                 }
                 property JsonObject colors: JsonObject {
                     property string used: "#2E86C1"           // Blue
@@ -150,7 +150,7 @@ Singleton {
                 property JsonObject icon: JsonObject {
                     property bool enabled: true
                     property real scale: 1
-                    property string color: Config.data.theme.color.foreground2
+                    property string color: Config.data.theme.colors.foreground2
                 }
                 property JsonObject colors: JsonObject {
                     property string rx: "#1F77B4"  // Blue

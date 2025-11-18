@@ -136,14 +136,14 @@ Item {
                     font.family: Config.data.theme.font.family
                     font.pixelSize: Config.data.theme.font.size
                     font.bold: true
-                    color: Config.data.theme.color.foreground
+                    color: Config.data.theme.colors.foreground
                 }
 
                 Text {
                     Layout.alignment: Qt.AlignHCenter
                     font.family: Config.data.theme.fontMono.family
                     font.pixelSize: Config.data.theme.fontMono.size
-                    color: Config.data.theme.color.foreground
+                    color: Config.data.theme.colors.foreground
                     text: {
                         let names = ['1m', '5m', '15m'];
                         let out = [];
@@ -162,7 +162,7 @@ Item {
                     font.family: Config.data.theme.font.family
                     font.pixelSize: Config.data.theme.font.size
                     font.bold: true
-                    color: Config.data.theme.color.foreground
+                    color: Config.data.theme.colors.foreground
                     Layout.topMargin: 6
                 }
 
@@ -170,7 +170,7 @@ Item {
                     Layout.alignment: Qt.AlignHCenter
                     font.family: Config.data.theme.fontMono.family
                     font.pixelSize: Config.data.theme.fontMono.size
-                    color: Config.data.theme.color.foreground
+                    color: Config.data.theme.colors.foreground
                     text: {
                         let out = [];
                         for (let i = 0; i < CPU.coreUsages.length; ++i) {
@@ -188,7 +188,7 @@ Item {
                     font.family: Config.data.theme.font.family
                     font.pixelSize: Config.data.theme.font.size
                     font.bold: true
-                    color: Config.data.theme.color.foreground
+                    color: Config.data.theme.colors.foreground
                     Layout.topMargin: 6
                 }
 
@@ -196,7 +196,7 @@ Item {
                     Layout.alignment: Qt.AlignHCenter
                     font.family: Config.data.theme.fontMono.family
                     font.pixelSize: Config.data.theme.fontMono.size
-                    color: Config.data.theme.color.foreground
+                    color: Config.data.theme.colors.foreground
                     text: {
                         let out = [];
                         for (let p of CPU.topProcesses) {

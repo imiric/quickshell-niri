@@ -12,7 +12,7 @@ ShellRoot{
         component: Bar{
             position: Types.stringToPosition(Config.data.bar.position)
             size: Config.data.bar.size
-            color: Config.data.theme.color.background
+            color: Config.data.theme.colors.background
         }
     }
 }

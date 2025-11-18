@@ -53,7 +53,7 @@ Item {
             font.family: Config.data.clock.font.family || Config.data.theme.font.family
             font.pixelSize: baseFontSize * timeScale
             font.weight: Config.data.clock.font.weight
-            color: Config.data.theme.color.textMuted
+            color: Config.data.theme.colors.textMuted
             visible: Config.data.clock.time.enabled !== false
             verticalAlignment: Text.AlignVCenter
         }
@@ -68,7 +68,7 @@ Item {
             font.family: Config.data.clock.font.family || Config.data.theme.font.family
             font.pixelSize: baseFontSize * dateScale
             font.weight: Config.data.clock.font.weight
-            color: Config.data.theme.color.textMuted
+            color: Config.data.theme.colors.textMuted
             visible: Config.data.clock.date.enabled !== false
             verticalAlignment: Text.AlignVCenter
         }

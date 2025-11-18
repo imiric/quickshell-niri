@@ -32,7 +32,7 @@ Row {
         font.family: Config.data.focusedWindow.font.family || Config.data.theme.font.family
         font.pixelSize: Config.data.focusedWindow.font.scale * Config.data.theme.font.size
         font.weight: Config.data.focusedWindow.font.weight
-        color: Config.data.theme.color.text
+        color: Config.data.theme.colors.text
         visible: Config.data.focusedWindow.title.enabled
     }
 }

@@ -38,17 +38,17 @@ Item {
         pulse: isCharging
         highlightColor: (() => {
             if (isCritical && !isCharging) {
-                return Config.data.theme.color.error;
+                return Config.data.theme.colors.error;
             }
             if (isLow && !isCharging) {
-                return Config.data.theme.color.warning;
+                return Config.data.theme.colors.warning;
             }
-            return Config.data.theme.color.ok;
+            return Config.data.theme.colors.ok;
         })()
         font.family: "Noto Sans"
         font.bold: true
         font.pixelSize: Config.data.theme.font.size * Config.data.battery.scale * 0.7
-        textColor: Config.data.theme.color.foreground
+        textColor: Config.data.theme.colors.foreground
 
         // Clip the progress bar within the borders of the battery icon body
         layer.enabled: true
@@ -73,7 +73,7 @@ Item {
         anchors.centerIn: parent
         size: Math.min(Config.data.battery.scale * Config.data.theme.widget.size,
                        Config.data.bar.size)
-        iconColor: Config.data.theme.color.foreground
+        iconColor: Config.data.theme.colors.foreground
         orientation: root.orientation
     }
 
@@ -103,7 +103,7 @@ Item {
                             return "Unknown";
                         }
                     }
-                    color: Config.data.theme.color.foreground
+                    color: Config.data.theme.colors.foreground
                     font.family: Config.data.theme.font.family
                     font.pixelSize: Config.data.theme.font.size
                 }
@@ -120,7 +120,7 @@ Item {
                             return "Time remaining: " + hours + "h " + minutes + "m";
                         }
                     }
-                    color: Config.data.theme.color.foreground
+                    color: Config.data.theme.colors.foreground
                     font.family: Config.data.theme.font.family
                     font.pixelSize: Config.data.theme.font.size
                     visible: Battery.energyRate > 0 && ((Battery.isCharging && Battery.timeToFull > 0) || (!Battery.isCharging && Battery.timeToEmpty > 0))

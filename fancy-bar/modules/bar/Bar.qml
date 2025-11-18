@@ -61,7 +61,7 @@ Item {
         Component {
             id: separatorComponent
             SeparatorIcon {
-                color: ColorUtils.transparentize(Config.data.theme.color.foreground2, 0.5)
+                color: ColorUtils.transparentize(Config.data.theme.colors.foreground2, 0.5)
                 angle: 90
                 length: bar.height - bar.height * 0.4
                 strokeSize: 4

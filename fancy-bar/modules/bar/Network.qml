@@ -346,14 +346,14 @@ Item {
                     font.family: Config.data.theme.font.family
                     font.pixelSize: Config.data.theme.font.size
                     font.bold: true
-                    color: Config.data.theme.color.foreground
+                    color: Config.data.theme.colors.foreground
                 }
 
                 Text {
                     Layout.alignment: Qt.AlignHCenter
                     font.family: Config.data.theme.font.family
                     font.pixelSize: Config.data.theme.font.size
-                    color: Config.data.theme.color.foreground
+                    color: Config.data.theme.colors.foreground
                     textFormat: Text.RichText
 
                     text: {
