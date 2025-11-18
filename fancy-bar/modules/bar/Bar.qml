@@ -116,7 +116,7 @@ Item {
                 anchors {
                     verticalCenter: parent.verticalCenter
                     left: parent.left
-                    leftMargin: 25
+                    leftMargin: 6
                 }
             }
 
@@ -137,7 +137,7 @@ Item {
                 anchors {
                     verticalCenter: parent.verticalCenter
                     right: parent.right
-                    rightMargin: 25
+                    rightMargin: 6
                 }
             }
         }
