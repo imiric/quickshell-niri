@@ -57,112 +57,86 @@ Item {
             right: true
         }
 
+        // Widget component definitions
+        Component {
+            id: separatorComponent
+            SeparatorIcon {
+                color: ColorUtils.transparentize(Config.data.theme.color.foreground2, 0.5)
+                angle: 90
+                length: bar.height - bar.height * 0.4
+                strokeSize: 4
+                spacing: 1.5
+                lineType: "dotted"
+                dashLength: 1
+                edgeRadius: 4
+                Layout.alignment: Qt.AlignVCenter
+            }
+        }
+        Component { id: workspacesComponent; Workspaces {} }
+        Component { id: focusedWindowComponent; FocusedWindow {} }
+        Component { id: cpuComponent; CPU {} }
+        Component { id: ramComponent; RAM {} }
+        Component { id: networkComponent; Network {} }
+        Component {
+            id: batteryComponent
+            Battery {
+                orientation: Types.stringToOrientation(Config.data.battery.orientation)
+            }
+        }
+        Component {
+            id: clockComponent
+            Clock {
+                size: Math.min(
+                    root.size * Config.data.clock.scale - root.size * 0.2,
+                    root.size,
+                )
+            }
+        }
+
+        readonly property var widgetComponents: {
+            "battery": batteryComponent,
+            "clock": clockComponent,
+            "cpu": cpuComponent,
+            "focusedWindow": focusedWindowComponent,
+            "network": networkComponent,
+            "ram": ramComponent,
+            "separator": separatorComponent,
+            "workspaces": workspacesComponent,
+        }
+
         Rectangle {
             id: barContent
             anchors.fill: parent
             color: root.color
 
-            RowLayout {
-                id: leftLayout
+            LayoutSection {
+                section: "left"
+                widgetComponents: bar.widgetComponents
+
                 anchors {
                     left: parent.left
                     leftMargin: 25
                 }
-                Loader { active: Config.data.workspaces.enabled; sourceComponent: Workspaces {} }
             }
 
-            RowLayout {
-                id: centerLayout
+            LayoutSection {
+                section: "center"
+                widgetComponents: bar.widgetComponents
+
                 anchors {
-                    left: leftLayout.right
-                    leftMargin: 5
+                    horizontalCenter: parent.horizontalCenter
                     verticalCenter: parent.verticalCenter
                 }
-                Loader { active: Config.data.focusedWindow.enabled; sourceComponent: FocusedWindow {} }
             }
 
-            RowLayout {
-                id: rightLayout
+            LayoutSection {
+                section: "right"
+                widgetComponents: bar.widgetComponents
+
                 anchors {
                     verticalCenter: parent.verticalCenter
                     right: parent.right
                     rightMargin: 25
-                }
-                spacing: 6
-
-                Component {
-                    id: separatorComponent
-                    SeparatorIcon {
-                        color: ColorUtils.transparentize(Config.data.theme.color.foreground2, 0.5)
-                        angle: 90
-                        length: bar.height - bar.height * 0.4
-                        strokeSize: 4
-                        spacing: 1.5
-                        lineType: "dotted"
-                        dashLength: 1
-                        edgeRadius: 4
-                        Layout.alignment: Qt.AlignVCenter
-                    }
-                }
-
-                // Widget component definitions
-                Component { id: cpuComponent; CPU {} }
-                Component { id: ramComponent; RAM {} }
-                Component { id: networkComponent; Network {} }
-                Component {
-                    id: batteryComponent
-                    Battery {
-                        orientation: Types.stringToOrientation(Config.data.battery.orientation)
-                    }
-                }
-                Component {
-                    id: clockComponent
-                    Clock {
-                        size: Math.min(
-                            root.size * Config.data.clock.scale - root.size * 0.2,
-                            root.size,
-                        )
-                    }
-                }
-
-                readonly property var componentMap: {
-                    "cpu": cpuComponent,
-                    "ram": ramComponent,
-                    "network": networkComponent,
-                    "battery": batteryComponent,
-                    "clock": clockComponent,
-                }
-
-                readonly property var widgetModel: {
-                    let model = [];
-                    let hasPreviousWidget = false;
-                    const enabledWidgets = Config.data.enabledWidgets.right;
-
-                    for (let i = 0; i < enabledWidgets.length; i++) {
-                        const widget = rightLayout.componentMap[enabledWidgets[i]];
-                        if (!widget) {
-                            console.error(`invalid widget: ${enabledWidgets[i]}`);
-                            continue;
-                        }
-
-                        if (hasPreviousWidget) {
-                            model.push(separatorComponent);
-                        }
-                        model.push(widget);
-                        hasPreviousWidget = true;
-                    }
-
-                    return model;
-                }
-
-                // Dynamic layout generator
-                Repeater {
-                    model: rightLayout.widgetModel
-
-                    delegate: Loader {
-                        active: true
-                        sourceComponent: modelData
-                    }
                 }
             }
         }

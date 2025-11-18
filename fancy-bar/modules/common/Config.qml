@@ -53,9 +53,23 @@ Singleton {
                 }
             }
 
-            // Defines widgets that should be shown, and their order.
-            property JsonObject enabledWidgets: JsonObject {
-                property list<string> right: ["cpu", "ram", "network", "battery", "clock"]
+            // Defines the widgets that should be shown in each section and their order.
+            property JsonObject layout: JsonObject {
+                property JsonObject left: JsonObject {
+                    property list<string> widgets: ["workspaces", "focusedWindow"]
+                    property bool separator: true
+                    property int spacing: 6
+                }
+                property JsonObject center: JsonObject {
+                    property list<string> widgets: []
+                    property bool separator: true
+                    property int spacing: 6
+                }
+                property JsonObject right: JsonObject {
+                    property list<string> widgets: ["cpu", "ram", "network", "battery", "clock"]
+                    property bool separator: true
+                    property int spacing: 6
+                }
             }
 
             property JsonObject bar: JsonObject {
@@ -64,7 +78,6 @@ Singleton {
             }
 
             property JsonObject focusedWindow: JsonObject {
-                property bool enabled: true
                 property JsonObject icon: JsonObject {
                     property bool enabled: true
                     property real scale: 1
@@ -173,7 +186,6 @@ Singleton {
             }
 
             property JsonObject workspaces: JsonObject {
-                property bool enabled: true
                 property JsonObject icon: JsonObject {
                     property real scale: 0.6
                     property real radius: 1
