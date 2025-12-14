@@ -18,7 +18,7 @@ Item {
         implicitHeight: bar.height + 100
         color: "transparent"
         layer: WlrLayer.Bottom
-        exclusiveZone: 0
+        exclusionMode: ExclusionMode.Ignore
         anchors: bar.anchors
 
         Rectangle {
