@@ -4,9 +4,6 @@
 
 A more advanced variant of the [Simple bar](../simple-bar).
 
-> [!WARNING]
-> This configuration is a work in progress, and might change at any point.
-
 ### Demo
 
 https://github.com/user-attachments/assets/0d15347d-0c25-4f51-834e-02ac19055b43
