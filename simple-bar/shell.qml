@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Wayland
-import Niri 0.1
+import Niri
 import "./modules/bar/"
 
 ShellRoot{

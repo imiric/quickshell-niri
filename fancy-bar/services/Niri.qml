@@ -1,6 +1,6 @@
 pragma Singleton
 import QtQuick
-import Niri 0.1
+import Niri
 
 Niri {
     id: niri
