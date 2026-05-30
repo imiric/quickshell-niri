@@ -1,11 +1,11 @@
 ## quickshell-niri
 
-This project contains examples of [Quickshell](https://quickshell.outfoxxed.me/) configuration for the [niri](https://github.com/YaLTeR/niri) Wayland compositor, using the [QML plugin for niri](https://github.com/imiric/qml-niri).
+This project contains examples of [Quickshell](https://quickshell.outfoxxed.me/) configuration for the [niri](https://github.com/niri-wm/niri) Wayland compositor, using the [QML plugin for niri](https://github.com/imiric/qml-niri).
 
 
 ### Setup
 
-1. Install Quickshell version >=0.2.1, and niri version >=25.08.
+1. Install Quickshell version >=0.3.0, and niri version >=26.04.
 
 2. [Install the QML plugin for niri.](https://github.com/imiric/qml-niri#installation)
 
